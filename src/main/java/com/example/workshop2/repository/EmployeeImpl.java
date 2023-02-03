@@ -32,12 +32,16 @@ public class EmployeeImpl implements EmployeeRepo {
 
     @Override
     public int save(Employee employee) {
-        return jdbcTemplate.update("insert into employees (name, location, department) values (?,?,?)", new Object[] {employee.getName(), employee.getEmail(), employee.getDepartment() });
+        return jdbcTemplate.update("insert into employees (name, email, department) values (?,?,?)", new Object[] {employee.getName(), employee.getEmail(), employee.getDepartment() });
     }
 
     @Override
     public int update(Employee employee, int id) {
-        return jdbcTemplate.update("update employees set name = ?, email = ?, department = ? where id = ?", new Object[] {employee.getName(), employee.getEmail(), employee.getDepartment() },id) ;
+        System.out.println(">>>> " + id);
+        System.out.println(">>>> " + employee.getDepartment());
+        System.out.println(">>>> " + employee.getName());
+        System.out.println(">>>> " + employee.getEmail());
+        return jdbcTemplate.update("update employees set name = ?, email = ?, department = ? where id = ?", new Object[] {employee.getName(), employee.getEmail(), employee.getDepartment() ,id}) ;
     }
     
 }
